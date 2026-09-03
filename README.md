@@ -8,8 +8,8 @@ Some AI tools read a global "instructions" file — Claude Code's `CLAUDE.md`, O
 ## The Solution
 **ShareAgents** connects your tools' instructions files to a single shared file (The Hub). An edit in any linked tool is reflected in all the others.
 
-## Why only 3 agents?
-ShareAgents only supports tools with a **confirmed, global** (home-directory-level, not per-project) single instructions file: **Claude Code**, **OpenCode**, and **Windsurf**. Cursor, Codex CLI, Gemini CLI, GitHub Copilot, and Antigravity either scope their `AGENTS.md` to individual project repos or use an entirely different convention — syncing those would mean guessing at the wrong file, so they're deliberately left out rather than silently mishandled.
+## Why only 4 agents?
+ShareAgents only supports tools with a **confirmed, global** (home-directory-level, not per-project) single instructions file: **Claude Code**, **OpenCode**, **Windsurf**, and **Codex CLI** (`~/.codex/AGENTS.md`, or `AGENTS.override.md` when present — ShareAgents links whichever one Codex is actually reading). Cursor, Gemini CLI, GitHub Copilot, and Antigravity either scope their `AGENTS.md` to individual project repos or use an entirely different convention — syncing those would mean guessing at the wrong file, so they're deliberately left out rather than silently mishandled.
 
 ## Features
 - 🔄 **One-Way Centralization:** Seeds the Hub from the first agent you sync, then keeps every linked tool pointed at it.

@@ -7,7 +7,7 @@ import fs from 'fs';
 import path from 'path';
 import os from 'os';
 
-import { AGENTS, DEFAULT_HUB_DIR, HUB_FILE_NAME, AgentConfig } from './constants';
+import { AGENTS, DEFAULT_HUB_DIR, HUB_FILE_NAME, AgentConfig, resolveCodexPath } from './constants';
 import { safeSyncFile, ensureDir, getInstructionsPreview, isSyncedToHub, ConflictResolution } from './sync';
 
 const program = new Command();
@@ -27,8 +27,8 @@ program
             `ShareAgents lets you keep one shared set of 'Agent Instructions' across your AI tools.\n` +
             `By syncing each tool's global instructions file into one central Hub, an edit in one place\n` +
             `(like Claude Code's CLAUDE.md) is reflected everywhere else it's linked.\n\n` +
-            `${color.yellow(color.bold('Currently supported:'))} Claude Code, OpenCode, and Windsurf — the only tools with a\n` +
-            `confirmed GLOBAL (not per-project) instructions file. Cursor, Codex, Gemini CLI, GitHub Copilot,\n` +
+            `${color.yellow(color.bold('Currently supported:'))} Claude Code, OpenCode, Windsurf, and Codex CLI — the only tools\n` +
+            `with a confirmed GLOBAL (not per-project) instructions file. Cursor, Gemini CLI, GitHub Copilot,\n` +
             `and Antigravity scope AGENTS.md to individual projects (or use a different convention entirely),\n` +
             `so they're intentionally left out rather than guessed at.\n\n` +
             `${color.yellow(color.bold('IMPORTANT:'))} Please close your AI tools before proceeding to prevent\n` +
@@ -70,7 +70,9 @@ program
         const notDetected: AgentConfig[] = [];
 
         for (const agent of AGENTS) {
-            const fullPath = path.join(homeDir, agent.relativePath);
+            const fullPath = agent.name === 'Codex CLI'
+                ? resolveCodexPath()
+                : path.join(homeDir, agent.relativePath);
 
             if (fs.existsSync(fullPath)) {
                 detected.push({ ...agent, relativePath: fullPath });
