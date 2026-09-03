@@ -1,0 +1,48 @@
+{
+  "name": "shareagents",
+  "version": "1.0.0",
+  "description": "Synchronize AGENTS.md-style AI agent instructions across different tools safely.",
+  "main": "dist/index.js",
+  "bin": {
+    "shareagents": "dist/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=16.7.0"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "tsx src/index.ts",
+    "test": "vitest run",
+    "dev": "tsx watch src/index.ts"
+  },
+  "keywords": [
+    "ai",
+    "agents",
+    "agents.md",
+    "claude",
+    "opencode",
+    "windsurf",
+    "sync",
+    "automation",
+    "cli"
+  ],
+  "author": "ShareSkills Contributors",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "tsx": "^4.0.0",
+    "typescript": "^5.0.0",
+    "vitest": "^3.0.0"
+  },
+  "dependencies": {
+    "@clack/prompts": "^1.1.0",
+    "commander": "^14.0.3",
+    "picocolors": "^1.1.1"
+  }
+}
