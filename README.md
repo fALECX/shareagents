@@ -1,6 +1,6 @@
 # ShareAgents CLI 🤖
 
-Synchronize **AGENTS.md-style agent instructions** across different AI coding tools into one **Universal Central Hub**. Part of the [ShareSkills](https://github.com/) family of tools — same idea, same safety model, applied to your global agent instructions file instead of your skills folder.
+Synchronize **AGENTS.md-style agent instructions** across different AI coding tools into one **Universal Central Hub**. Part of the [ShareSkills](https://github.com/fALECX/shareskills) family of tools — same idea, same safety model, applied to your global agent instructions file instead of your skills folder.
 
 ## The Problem
 Some AI tools read a global "instructions" file — Claude Code's `CLAUDE.md`, OpenCode's `AGENTS.md`, Windsurf's `global_rules.md` — that shapes how the agent behaves across every project. Edit it in one tool and the others don't know.
@@ -36,6 +36,12 @@ npm install -g shareagents
    - Select which agents you want to synchronize.
    - Resolve any content conflicts it finds.
    - Add any custom paths.
+
+## Environment Variables
+
+| Variable | Description |
+|---|---|
+| `SHAREAGENTS_HUB_PATH` | Skip the Hub location prompt by presetting the path. Useful for automation or CI. |
 
 ## How it Works
 1. ShareAgents finds your agents' global instructions files (e.g., `~/.claude/CLAUDE.md`).
