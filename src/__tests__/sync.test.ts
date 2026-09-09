@@ -100,4 +100,22 @@ describe('sync logic', () => {
         expect(previews[0].name).toBe('TestAgent');
         expect(previews[0].preview).toContain('Hello from Agent');
     });
+
+    it('skips non-existent files in getInstructionsPreview', () => {
+        const missing = path.join(testDir, 'does-not-exist.md');
+        const previews = getInstructionsPreview([{ name: 'Ghost', path: missing }]);
+        expect(previews).toHaveLength(0);
+    });
+
+    it('returns "(empty file)" preview for a blank instructions file', () => {
+        const emptyFile = path.join(testDir, 'empty.md');
+        fs.writeFileSync(emptyFile, '');
+        const previews = getInstructionsPreview([{ name: 'EmptyAgent', path: emptyFile }]);
+        expect(previews).toHaveLength(1);
+        expect(previews[0].preview).toBe('(empty file)');
+    });
+
+    it('isSyncedToHub returns false for a file that is not linked', () => {
+        expect(isSyncedToHub(agentFile, hubFile)).toBe(false);
+    });
 });
