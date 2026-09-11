@@ -3,6 +3,8 @@
 import { Command } from 'commander';
 import * as p from '@clack/prompts';
 import color from 'picocolors';
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+const { version } = require('../package.json') as { version: string };
 import fs from 'fs';
 import path from 'path';
 import os from 'os';
@@ -15,7 +17,7 @@ const program = new Command();
 program
     .name('shareagents')
     .description('Synchronize AGENTS.md-style AI agent instructions across different tools safely.')
-    .version('1.0.0');
+    .version(version);
 
 program
     .command('sync')
