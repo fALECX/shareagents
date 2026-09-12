@@ -194,10 +194,14 @@ program
                 `Current content of ${color.green(previews.length)} file(s) about to be shared:`
             );
 
-            await p.confirm({
+            const ready = await p.confirm({
                 message: `Reviewed the content above. Ready to continue?`,
                 initialValue: true
             });
+            if (!ready || p.isCancel(ready)) {
+                p.cancel('Sync aborted.');
+                process.exit(0);
+            }
         }
 
         // 6. Resolve any content conflicts with the Hub up front (before the
