@@ -118,4 +118,9 @@ describe('sync logic', () => {
     it('isSyncedToHub returns false for a file that is not linked', () => {
         expect(isSyncedToHub(agentFile, hubFile)).toBe(false);
     });
+
+    it('isSyncedToHub returns false when originalPath does not exist', () => {
+        const missing = path.join(testDir, 'does-not-exist.md');
+        expect(isSyncedToHub(missing, hubFile)).toBe(false);
+    });
 });
