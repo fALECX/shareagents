@@ -52,5 +52,21 @@ npm install -g shareagents
 ## A known limitation
 Some editors save files by writing a new copy and replacing the original ("atomic save") rather than editing in place. That silently breaks a hardlink or symlink on the next save, turning a "synced" file back into an independent copy with no error shown. ShareAgents checks link status on every run and will re-link and warn you if it finds a file has drifted — but if you edit a synced file directly, it's worth re-running `shareagents sync` afterward to confirm the link held.
 
+## Development
+
+```bash
+# Install dependencies
+npm install
+
+# Build TypeScript to dist/
+npm run build
+
+# Run tests
+npm test
+
+# Run locally without building
+npm start
+```
+
 ## License
 ISC
